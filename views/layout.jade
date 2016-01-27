@@ -1,7 +1,41 @@
 doctype html
-html
+html(lang='en')
   head
-    title= title
+    meta(charset='UTF-8')
+    title Home Insurance Audit Assist
+    script(src='https://code.jquery.com/jquery-2.2.0.min.js')
+    script(src='/javascripts/main.js')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    .container-fluid
+      #topspacer.row
+        #maincontainer.row
+          #left-panel.col-sm-3
+            ul#nav
+              li
+                P View All
+              li
+                P a(href: '/items/add') Add Item
+          #content.col-sm-9
+            
+            //main content here
+            block content
+
+//TODO NEXT STEPS #A
+
+//FUTURE SELF ---->  ROUTES, VIEWS, AND MODELS STARTED- YOU NEED TO
+//CREATE ADD NEW ITEM VIEW AND PLUG IT TO MONGOOSE TO MAKE IT EASIER
+//TO START TESTING/BUILDING OUT VIEWS WITH DATA
+
+//USE SOMETHING LIKE THIS FOR THE ADD NEW ITEM PAGE:
+
+/////////// second way
+  //- var user = new User({
+  //-   firstName: 'Cade',
+  //-   lastName: 'Nichols'
+  //- });
+  //- user.save(function(err, savedUser){
+  //-   console.log('err: ', err);
+  //-   console.log('savedUser: ', savedUser);
+  //- });
