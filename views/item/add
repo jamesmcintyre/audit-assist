@@ -1,0 +1,22 @@
+html
+  body
+    #mainarea.row
+      #left-pane.col-sm-4
+        #image-contain
+          .form-group
+            label(for='itemimgurl') Item Image
+            input#itemimgurl(type='text')
+            p.help-block Paste the URL of the image you'd like to use!
+      #right-pane.col-sm-8
+        #itemname.row
+          .form-group
+            label(for='itemnameinput') Item Name
+            input#itemnameinput(type='text')
+      #itemdesc.row
+        .form-group
+          label(for='itemdescinput') Item Description
+          input#itemdescinput(type='text')
+      #itemprice.row
+        .form-group
+          label(for='itempriceinput') Item Price
+          input#itempriceinput(type='text')
