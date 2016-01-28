@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var Item = require('../models/item');
+var numeral = require('numeral');
 
 
 
@@ -29,88 +30,79 @@ router.post('/add', function(req, res, next) {
 
 });
 
+// UPDATE ITEM
+router.put('/edit/:itemId', function(req, res, next) {
+
+  var itemUpdate = new Item(req.body);
+  var itemId = req.params.itemId;
+
+  //get item from mongo via id using findbyid
+  Item.findById(itemId, function(err, retreivedItem){
+
+    retreivedItem.description = itemUpdate.description;
+    retreivedItem.price = itemUpdate.price;
+    retreivedItem.name = itemUpdate.name;
+    retreivedItem.image = itemUpdate.image;
+
+    retreivedItem.save(function(err, savedItem){
+      if (err) res.send(err);
+      res.send( savedItem._id );
+
+    });
+  });
+});
+
+
+//DELETE AN ITEM
+
+router.delete('/delete/:itemId', function(req, res, next){
+
+  var itemId = req.params.itemId;
+  //get item from mongo via id using findbyid
+  Item.findById(itemId, function(err, retreivedItem){
+
+    retreivedItem.remove(function(err){
+      res.status(err ? 400 : 200).send(err || null);
+    });
+  });
+})
+
+
 
 //VIEW SINGLE ITEM
 router.get('/view/:itemId', function(req, res, next) {
   var itemId = req.params.itemId;
 
   //get item from mongo via id using findbyid
-  Item.findById(itemId, function(err, retreivedItem){
-    console.log('item retrieved: '+retreivedItem);
+  Item.findById(itemId, function(err, retrievedItem){
+    console.log('item retrieved: '+retrievedItem);
+
+    var objForRender = {
+      name: retrievedItem.name,
+      price: numeral( retrievedItem.price ).format('$0,0.00'),
+      description: retrievedItem.description,
+      _id: retrievedItem._id,
+      image: retrievedItem.image
+    };
+
     //res.render and send item as obj to jade file
-    res.render('item', {item: retreivedItem});
+    res.render('item', {item: objForRender});
   });
-
-
-
-
 
 });
 
+//RENDER VIEW TO EDIT SINGLE ITEM
+router.get('/edit/:itemId', function(req, res, next) {
+  var itemId = req.params.itemId;
 
+  //get item from mongo via id using findbyid
+  Item.findById(itemId, function(err, retreivedItem){
+    console.log('item retrieved: '+retreivedItem);
+    //res.render and send item as obj to jade file
+    res.render('edit', {item: retreivedItem});
+  });
 
-
-
-// //capture the potion  id from the url string (anything after ':')
-// router.get('/:potionId', function(req, res){
-//   //use req.params.potionId which is how we capture the url param to find the record via the model
-//   //also use "findOne instead of find to get only one"
-//   //or you can use findById
-//   Potion.findById( req.params.potionId , function(err, potion){
-//
-//     console.log('potion: '+ potion);
-//     res.send(potion);
-//
-//   });
-//
-// });
-
-
-
-
-
-
-
-
-
-// router.get('/view/:contactKey', function(req, res, next){
-//
-//   var arr = [];
-//   var retrievalKey = req.params.contactKey;
-//   console.log('the key from url: '+retrievalKey);
-//   var retrievedContact = {};
-//
-//   console.log(req.body);
-//
-//   fs.readFile('./data/data.json', function(err, data) {
-//     if(err){
-//       return res.status(400).send(err);
-//     }
-//     arr = (JSON.parse(data) || []);
-//
-//
-//   // var retrievalKey = req.body.key;
-//   console.log('retrieval key is: '+retrievalKey);
-//   console.log('arr is:'+arr);
-//
-//   // var retrievedContact = arr.filter(function( obj ) {
-//   // return obj.dateid === retrievalKey;})[0];
-//
-//   for (var i=0; i<arr.length; i++) {
-//     if (arr[i].dateid === retrievalKey){
-//       retrievedContact = arr[i];
-//     }
-//   }
-//
-//
-//   console.log(retrievedContact);
-//
-//   console.log('retrieved contact:  '+JSON.stringify(retrievedContact));
-//   res.render('view', {retrievedContact: retrievedContact});
-//   });
-//
-// });
-
+});
 
 
 

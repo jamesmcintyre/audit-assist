@@ -7,8 +7,15 @@ block content
         img#itemimage(src= item.image , alt='')
     #right-pane.col-sm-8
       #itemname.row
-        h3= item.name
+        h3= 'Name: ' + item.name
       #itemdesc.row
-        p= item.description
+        p= 'Description: ' + item.description
       #itemprice.row
-        p= item.price
+        p= 'Price: ' + item.price
+      #itemeditlink.row.text-right
+        ul#options
+          li
+            a(href='/items/edit/'+item._id) Edit Item
+          li
+            a(href='/items/delete/'+item._id) Delete Item
+      

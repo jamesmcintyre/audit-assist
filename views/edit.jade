@@ -6,7 +6,7 @@ block content
         #image-contain
           .form-group
             label(for='itemimgurl') Item Image
-            input#itemimgurl.form-control(type='text', value=)
+            input#itemimgurl.form-control(type='text', value=item.image)
             p.help-block Paste the URL of the image you'd like to use!
       #right-pane.col-sm-8
         //- #itemcat.row
@@ -16,13 +16,16 @@ block content
         #itemname.row
           .form-group
             label(for='itemnameinput') Item Name
-            input#itemnameinput.form-control(type='text', value=)
+            input#itemnameinput.form-control(type='text', value=item.name)
         #itemdesc.row
           .form-group
             label(for='itemdescinput') Item Description
-            input#itemdescinput.form-control(type='text', value=)
+            input#itemdescinput.form-control(type='text', value=item.description)
         #itemprice.row
           .form-group
             label(for='itempriceinput') Item Price
-            input#itempriceinput.form-control(type='number', value=)
-            button#senditem.btn.btn-default(type='submit') Update Item
+            input#itempriceinput.form-control(type='number', value=item.price)
+            
+        #itemsubmit.row
+          .form-group
+            button#updateitem.btn.btn-default(type='submit', data-id=item._id) Update Item

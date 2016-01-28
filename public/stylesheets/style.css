@@ -14,3 +14,19 @@ a {
 .totals {
   font-weight: bold;
 }
+
+#nav li {
+  display: block;
+  padding-bottom: 8px;
+}
+
+#itemeditlink {
+  border-top: 1px solid #BFBFBF;
+  padding-top: 10px;
+}
+
+
+#options li {
+  display: inline-block;
+  margin-right: 10px;
+}
