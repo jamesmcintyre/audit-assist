@@ -4,7 +4,7 @@ block content
   #mainarea.row
     #left-pane.col-sm-4
       #image-contain
-        img#itemimage(src= item.image , alt='')
+        img#itemimage(src= item.image, alt='')
     #right-pane.col-sm-8
       #itemname.row
         h3= 'Name: ' + item.name
@@ -17,5 +17,5 @@ block content
           li
             a(href='/items/edit/'+item._id) Edit Item
           li
-            a(href='/items/delete/'+item._id) Delete Item
+            a(href='#', data-id= item._id)#deleteItem Delete Item
       

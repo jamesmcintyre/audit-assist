@@ -3,11 +3,12 @@ extends layout
 block content
   #listall.row
     table#currentitems.table.table-hover
-      tr.row
-        th.col-name Item Name
-        th.col-description Item Description
-        th.col-price.text-right Price
-        
+      thead
+        tr.row
+          th.col-name Item Name
+          th.col-description Item Description
+          th.col-price.text-right Price
+      //- tbody.tableData
       each item in retrievedItems
         tr.row.itemInList(data-id= item.id)
           td.col-name
@@ -16,7 +17,7 @@ block content
             p= item.description
           td.col-price.text-right
             p= item.price
-            
+      //- tbody    
       tr.row.totals
         td.col-name
           p
