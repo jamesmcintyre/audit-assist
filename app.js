@@ -9,7 +9,7 @@ var numeral = require('numeral');
 
 
 //connect to your mongodb server called "testing"
-mongoose.connect('mongodb://localhost/auditassist/', function(err){
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/auditassist/', function(err){
   //report error
   if(err) return console.log('mongo err: '+err);
   //report success
