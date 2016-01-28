@@ -8,20 +8,20 @@ block content
           th.col-name Item Name
           th.col-description Item Description
           th.col-price.text-right Price
-      //- tbody.tableData
-      each item in retrievedItems
-        tr.row.itemInList(data-id= item.id)
+      tbody.tableData
+        each item in retrievedItems
+          tr.row.itemInList(data-id= item.id)
+            td.col-name
+              p= item.name
+            td.col-description
+              p= item.description
+            td.col-price.text-right
+              p= item.price
+      tbody    
+        tr.row.totals
           td.col-name
-            p= item.name
-          td.col-description
-            p= item.description
+            p
+          td.col-description.text-right
+            p Total:
           td.col-price.text-right
-            p= item.price
-      //- tbody    
-      tr.row.totals
-        td.col-name
-          p
-        td.col-description.text-right
-          p Total:
-        td.col-price.text-right
-          p= grandTotal
+            p= grandTotal

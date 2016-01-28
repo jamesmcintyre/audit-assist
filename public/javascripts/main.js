@@ -6,13 +6,18 @@ function init(){
   $('#senditem').on('click', addNewItem);
   $('#updateitem').on('click', updateItem);
   $('#deleteItem').on('click', deleteItem);
-  console.log('main js loaded');
+  $("th:contains('Price')").on('click', sortByPrice);
+  $("th:contains('Item Name')").on('click', sortByName);
+  $("th:contains('Item Description')").on('click', sortByDescription);
   $('tr.itemInList').on('click', getItemView);
 
 }
 
+var modiferPrice = 1;
+var modiferName = 1;
+var modiferDesc = 1;
 
-//TODO add jquery sort using dom manipulation and lodash in main.js
+
 
 function addNewItem(){
 
@@ -40,12 +45,12 @@ function addNewItem(){
     });
 }
 
+
 function getItemView(){
-  console.log("i have run");
-  // debugger;
   var itemId = $(this).attr('data-id');
   window.location.href = '/items/view/'+itemId.replace(/^"(.*)"$/, '$1');
 }
+
 
 function updateItem(){
 
@@ -57,7 +62,6 @@ function updateItem(){
       id: $('#updateitem').data('id').replace(/^"(.*)"$/, '$1')
     };
 
-
     $.ajax({
       url: '/items/edit/'+editedItem.id,
       type: 'PUT',
@@ -67,24 +71,55 @@ function updateItem(){
         window.location.href = '/items/view/'+id;
       }
     });
-
 }
 
+
 function deleteItem(){
-
   var itemId = $(this).data('id');
-
   $.ajax({
     url: '/items/delete/'+itemId.replace(/^"(.*)"$/, '$1'),
     type: 'DELETE',
     data: 'delete please',
     success: function(data) {
-
       window.location.href = '/';
     }
   });
 }
 
 
+function sortByPrice(){
+  var $sorted = $("tbody.tableData tr");
+  $sorted.sort(function(a,b){
+        var aVal = parseFloat($(a).children("td.col-price").find("p").text().slice(1).replace(/\,/g,""));
+        var bVal = parseFloat($(b).children("td.col-price").find("p").text().slice(1).replace(/\,/g,""));
+        return (aVal - bVal)* modiferPrice;
+  });
+  $("tbody.tableData").empty().append($sorted);
+  modiferPrice *= -1;
+}
 
-//TODO  to sort Array.isArray($('tr').toArray())
+
+function sortByName(){
+  var $sorted = $("tbody.tableData tr");
+  $sorted.sort(function(a,b){
+        var aVal = $(a).children("td.col-name").find("p").text();
+        var bVal = $(b).children("td.col-name").find("p").text();
+
+        return (aVal > bVal) ? 1 : ((aVal < bVal) ? - 1 : 0) * modiferName;
+  });
+  $("tbody.tableData").empty().append($sorted);
+  modiferName *= -1;
+}
+
+
+function sortByDescription(){
+  var $sorted = $("tbody.tableData tr");
+  $sorted.sort(function(a,b){
+        var aVal = $(a).children("td.col-description").find("p").text();
+        var bVal = $(b).children("td.col-description").find("p").text();
+
+        return (aVal > bVal) ? 1 : ((aVal < bVal) ? - 1 : 0) * modiferDesc;
+  });
+  $("tbody.tableData").empty().append($sorted);
+  modiferDesc *= -1;
+}

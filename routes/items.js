@@ -54,9 +54,7 @@ router.put('/edit/:itemId', function(req, res, next) {
 
 
 // DELETE AN ITEM
-
 router.delete('/delete/:itemId', function(req, res, next){
-
   var itemId = req.params.itemId;
   //get item from mongo via id using findbyid
   Item.findById(itemId, function(err, retreivedItem){
@@ -105,8 +103,6 @@ router.get('/edit/:itemId', function(req, res, next) {
   });
 
 });
-
-
 
 
 module.exports = router;
