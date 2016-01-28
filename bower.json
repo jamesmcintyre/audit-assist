@@ -1,0 +1,24 @@
+{
+  "name": "auditassist",
+  "description": "",
+  "main": "",
+  "authors": [
+    "James McIntyre <james.checks.his.email@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jamesmcintyre/audit-assist",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.0",
+    "numeral": "~1.5.3"
+  }
+}
