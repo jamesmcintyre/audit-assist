@@ -6,17 +6,7 @@ var Item = require('../models/item');
 
 
 
-//RENDER VIEW LIST ALL ITEMS
-router.get('/', function(req, res, next) {
-  Item.find({}, function(err, items){
 
-    console.log('err: '+err);
-    console.log('items: '+items);
-
-  res.render('item', { title: 'Express' });
-});
-
-});
 
 
 //RENDER ADD ITEM VIEW & API TO POST NEW ITEM TO DB
@@ -28,6 +18,7 @@ router.get('/add', function(req, res, next) {
 
 //POST ADD NEW ITEM
 router.post('/add', function(req, res, next) {
+
   var item = new Item(req.body);
   console.log('received item: ', item);
   item.save(function(err, savedItem){
