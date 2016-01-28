@@ -1,14 +1,14 @@
 extends layout
 
 block content
-#mainarea.row
-  #left-pane.col-sm-4
-    #image-contain
-      img#itemimage(src='', alt='')
-  #right-pane.col-sm-8
-    #itemname.row
-      h3
-    #itemdesc.row
-      p
-    #itemprice.row
-      p
+  #mainarea.row
+    #left-pane.col-sm-4
+      #image-contain
+        img#itemimage(src= item.image , alt='')
+    #right-pane.col-sm-8
+      #itemname.row
+        h3= item.name
+      #itemdesc.row
+        p= item.description
+      #itemprice.row
+        p= item.price

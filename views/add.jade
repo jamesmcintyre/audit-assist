@@ -1,17 +1,24 @@
 extends layout
 
 block content
-#listall.row
-  #left-pane.col-sm-4
-    #image-contain
-      
-      img#itemimage(src='', alt='')
-  #right-pane.col-sm-8
-    #itemname.row
-      h3
-    #itemdesc.row
-      p
-    #itemprice.row
-      p
-    #itemsubmit.row
-      button#senditem.btn.btn-default(type='submit') Add Item!
+    #mainarea.row
+      #left-pane.col-sm-4
+        #image-contain
+          .form-group
+            label(for='itemimgurl') Item Image
+            input#itemimgurl.form-control(type='text')
+            p.help-block Paste the URL of the image you'd like to use!
+      #right-pane.col-sm-8
+        #itemname.row
+          .form-group
+            label(for='itemnameinput') Item Name
+            input#itemnameinput.form-control(type='text')
+        #itemdesc.row
+          .form-group
+            label(for='itemdescinput') Item Description
+            input#itemdescinput.form-control(type='text')
+        #itemprice.row
+          .form-group
+            label(for='itempriceinput') Item Price
+            input#itempriceinput.form-control(type='number')
+            button#senditem.btn.btn-default(type='submit') Add Item!

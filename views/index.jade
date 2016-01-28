@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+#listall.row
+  table#currentitems
+    tr.row-header
+      th.col-name Item Name
+      th.col-description Item Description
+      th.col-price Price
+    tr.row
+      td.col-name
+      td.col-description
+      td.col-price

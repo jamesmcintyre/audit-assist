@@ -10,21 +10,21 @@ html(lang='en')
   body
     .container-fluid
       #topspacer.row
-        #maincontainer.row
-          #left-panel.col-sm-3
-            ul#nav
-              li
-                P View All
-              li
-                P a(href: '/items/add') Add Item
-          #content.col-sm-9
-            
-            //main content here
-            block content
+      #maincontainer.row
+        #left-panel.col-sm-3
+          ul#nav
+            li
+              a(href='/') View All
+            li
+              a(href="/items/add") Add Item
+        #content.col-sm-9
+          
+          //main content here
+          block content
 
 //TODO NEXT STEPS #A
 
-//FUTURE SELF ---->  ROUTES, VIEWS, AND MODELS STARTED- YOU NEED TO
+//FUTURE SELF  ROUTES, VIEWS, AND MODELS STARTED- YOU NEED TO
 //CREATE ADD NEW ITEM VIEW AND PLUG IT TO MONGOOSE TO MAKE IT EASIER
 //TO START TESTING/BUILDING OUT VIEWS WITH DATA
 
